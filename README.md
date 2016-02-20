@@ -1,5 +1,5 @@
 # Beaker
-A work in progress experimental<sup>(hah get it? experimental?)</sup> chemistry library and engine.
+A work in progress experimental<sup>(hah get it? experimental?)</sup> chemistry library and engine for Go.
 
 ## License
 Licensed under the MIT license as reproduced below:

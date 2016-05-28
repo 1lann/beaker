@@ -37,7 +37,7 @@ func ParseString(str string) (Compound, error) {
 
 		if currentLetter == "(" {
 			layerNum++
-			layers = append(layers, Compound{})
+			layers = append(layers, Compound{Amount: 1})
 		} else if currentLetter == ")" {
 			if len(layers[layerNum].Components) == 0 {
 				return Compound{}, &ParseError{
@@ -136,4 +136,13 @@ func ParseString(str string) (Compound, error) {
 	}
 
 	return layers[0], nil
+}
+
+func MustParseString(str string) Compound {
+	cmp, err := ParseString(str)
+	if err != nil {
+		panic(err)
+	}
+
+	return cmp
 }

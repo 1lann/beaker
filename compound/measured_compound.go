@@ -16,6 +16,11 @@ type GasCondition struct {
 	Volume      physics.Volume
 }
 
+func MolesByGasCondition(condition GasCondition) float64 {
+	return (condition.Pressure.KiloPascals() * condition.Volume.Litres()) /
+		(physics.R * condition.Temperature.Kelvin())
+}
+
 func (c Compound) MeasureByMass(mass physics.Mass) MeasuredCompound {
 	return MeasuredCompound{
 		Compound: c,
@@ -34,8 +39,7 @@ func (c Compound) MeasureByGasCondition(
 	condition GasCondition) MeasuredCompound {
 	return MeasuredCompound{
 		Compound: c,
-		moles: (condition.Pressure.KiloPascals() * condition.Volume.Litres()) /
-			(physics.R * condition.Temperature.Kelvin()),
+		moles:    MolesByGasCondition(condition),
 	}
 }
 

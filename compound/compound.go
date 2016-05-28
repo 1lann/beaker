@@ -11,6 +11,10 @@ type Compound struct {
 	Amount     int
 }
 
+func (c *Compound) AddCompenentCompound(comp Compound) {
+	c.Components = append(c.Components, comp)
+}
+
 func (c Compound) String() string {
 	str := ""
 
@@ -114,5 +118,6 @@ func (c Compound) CountElement(elem element.Element) int {
 	for _, component := range c.Components {
 		count += component.CountElement(elem)
 	}
-	return count
+
+	return count * c.Amount
 }
